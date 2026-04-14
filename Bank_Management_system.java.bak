@@ -1,0 +1,92 @@
+import java.util.*;
+
+class Bank_Management_system {
+    static Random r = new Random();
+    static Scanner sc = new Scanner(System.in);
+
+    private String name;
+    private long contact;
+    private double balance;
+    private int pin;
+
+    // Constructor
+    public Bank_Management_system(String name, long contact, double balance) {
+        this.name = name;
+        this.contact = contact;
+        this.balance = balance;
+        this.pin = generatePin();
+    }
+
+    // Generate PIN
+    public static int generatePin() {
+        return 1000 + r.nextInt(9000);
+    }
+
+    // Get PIN (for login display purpose)
+    public int getPin() {
+        return pin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        System.out.println("Name updated successfully: " + name);
+    }
+
+    public long getContact() {
+        return contact;
+    }
+
+    public void setContact(long contact) {
+        this.contact = contact;
+        System.out.println("Contact updated successfully");
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    // Withdraw
+    public void withdraw(double amount, int enteredPin) {
+        if (enteredPin != pin) {
+            System.out.println("Incorrect PIN ?");
+            return;
+        }
+
+        if (amount <= balance && amount > 0) {
+            balance -= amount;
+            System.out.println("?" + amount + " withdrawn successfully ??");
+        } else {
+            System.out.println("Insufficient balance ?");
+        }
+    }
+
+    // Deposit
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("?" + amount + " deposited successfully ??");
+        } else {
+            System.out.println("Invalid amount ?");
+        }
+    }
+
+    // Check balance
+    public void checkBalance() {
+        System.out.println("Available Balance: ?" + balance);
+    }
+
+    // Update details
+    public void updateDetails() {
+        System.out.println("Enter new contact:");
+        long newContact = sc.nextLong();
+        setContact(newContact);
+
+        System.out.println("Enter new name:");
+        String newName = sc.next();
+        setName(newName);
+    }
+}
