@@ -23,8 +23,5 @@ It allows users to perform basic banking operations securely.
 2. Run:
    java User_class
 
-## 📷 Sample Output
-(You can add screenshots here later)
-
 ## 👩‍💻 Author
 Kamala
